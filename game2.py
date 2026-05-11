@@ -75,9 +75,9 @@ floor_img = pygame.image.load("floor.png").convert_alpha()
 # =========================
 player_size = 48
 
-player_img = pygame.transform.scale(player_img, (48, 48))
-enemy_img = pygame.transform.scale(enemy_img, (80, 80))
-npc_img = pygame.transform.scale(npc_img, (48, 48))
+player_img = pygame.transform.scale(player_img, (80, 80))
+enemy_img = pygame.transform.scale(enemy_img, (120, 120))
+npc_img = pygame.transform.scale(npc_img, (80, 80))
 door_img = pygame.transform.scale(door_img, (64, 128))
 
 wall_img = pygame.transform.scale(wall_img, (wall_size, wall_size))
