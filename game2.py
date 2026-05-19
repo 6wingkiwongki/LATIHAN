@@ -75,9 +75,9 @@ floor_img = pygame.image.load("floor.png").convert_alpha()
 # =========================
 player_size = 48
 
-player_img = pygame.transform.scale(player_img, (80, 80))
-enemy_img = pygame.transform.scale(enemy_img, (120, 120))
-npc_img = pygame.transform.scale(npc_img, (80, 80))
+player_img = pygame.transform.scale(player_img, (48, 48))
+enemy_img = pygame.transform.scale(enemy_img, (80, 80))
+npc_img = pygame.transform.scale(npc_img, (48, 48))
 door_img = pygame.transform.scale(door_img, (64, 128))
 
 wall_img = pygame.transform.scale(wall_img, (wall_size, wall_size))
@@ -398,15 +398,13 @@ while running:
 
         if battery > 20:
 
-            game_ended = True
             ending_type = "GOOD"
 
         else:
 
-            game_ended = True
             ending_type = "BAD"
 
-        game_state = "menu"
+        game_ended = True
 
     # =========================
     # SECRET ENDING
@@ -563,6 +561,56 @@ while running:
 
         pygame.quit()
         sys.exit()
+
+    # =========================
+    # ENDING SCREEN
+    # =========================
+    if game_ended:
+
+        screen.fill(BLACK)
+
+        if ending_type == "GOOD":
+
+            draw_text("GOOD ENDING", WHITE, 340, 220)
+
+            draw_text("YOU ESCAPED THE SCHOOL.", WHITE, 220, 320)
+
+        elif ending_type == "BAD":
+
+            draw_text("BAD ENDING", RED, 360, 220)
+
+            draw_text("THE DARKNESS FOLLOWED YOU.", RED, 140, 320)
+
+        elif ending_type == "SECRET":
+
+            draw_text("SECRET ENDING", CYAN, 300, 220)
+
+            draw_text("YOU WERE THE ENTITY ALL ALONG.", CYAN, 80, 320)
+
+        pygame.display.update()
+
+        pygame.time.delay(5000)
+
+        game_state = "menu"
+        game_ended = False
+
+        # RESET GAME
+        player_x = 120
+        player_y = 120
+
+        enemy_x = 850
+        enemy_y = 100
+
+        glitch_timer = 0
+        enemy_active = False
+        battery = 100
+
+        show_glitch = False
+        show_dialog = False
+        show_jumpscare = False
+        fake_crash_done = False
+
+        continue
 
     pygame.display.update()
 
